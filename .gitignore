@@ -1,0 +1,15 @@
+# package
+CLIP
+
+# dataset
+data
+files.zip
+
+# models
+model.pth
+
+# log
+log
+
+# output images
+images
