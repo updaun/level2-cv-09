@@ -1,8 +1,6 @@
 # soruce: https://programmers.co.kr/learn/courses/30/lessons/81303
 # ref: https://www.youtube.com/watch?v=A-KfaMVBfhg
 
-# 정확성 테스트는 통과하나, 효율성 테스트에서 모두 실패.
-
 '''
 n: 표의 행 개수
 k: 처음 선택된 행의 위치
