@@ -1,4 +1,5 @@
 # soruce: https://programmers.co.kr/learn/courses/30/lessons/81303
+# ref: https://www.youtube.com/watch?v=A-KfaMVBfhg
 
 # 정확성 테스트는 통과하나, 효율성 테스트에서 모두 실패.
 
@@ -16,51 +17,72 @@ cmd: 명령어가 담긴 문자열 배열
 
 # 모든 명령어 수행 후 표의 상태와 처음 주어진 표의 상태를 비교하여 삭제되지 않은 행은 O, 삭제된 행은 X로 표시.
 
-from collections import deque
-import numpy as np
+# Linked list를 통한 효율성 개선
+class Node:
+    def __init__(self):
+        self.removed = False
+        self.prev = None
+        self.next = None
 
 def solution(n, k, cmd):
-    
     answer = ''
     
-    table = [[i, i] for i in range(n)] # [인덱스, 값]
+    # 링크드 리스트 초기화
+    nodeArr = [Node() for _ in range(n)]
     
-    removed_queue = deque()
+    for i in range(1, n):
+        nodeArr[i-1].next = nodeArr[i]
+        nodeArr[i].prev = nodeArr[i-1]
     
-    for c in cmd:
-        c = c.split(' ')
+    # 현재 노드
+    curr = nodeArr[k]
+    # removed 쌓아놓을 스택
+    mystack = []
+    
+    for str in cmd:
+        if str[0] == 'U':
+            x = int(str[2:])
+            
+            for _ in range(x):
+                curr = curr.prev
         
-        if c[0] == 'U':
-            k = k - int(c[1])
-        elif c[0] == 'D':
-            k = k + int(c[1])
-        elif c[0] == "C":
-            removed_queue.append(table[k])
-            del table[k]
+        elif str[0] == 'D':
+            x = int(str[2:])
             
-            if k == len(table):
-                k -= 1
-            else:    
-                for i in range(k, len(table)):
-                    table[i][0] -= 1     
+            for _ in range(x):
+                curr = curr.next
+        
+        elif str[0] == 'C':
+            mystack.append(curr)
+            curr.removed = True
             
+            up = curr.prev
+            down = curr.next
+            
+            if up:
+                up.next = down
+            
+            if down:
+                down.prev = up
+                curr = down
+            # 삭제된 행이 마지막 행인 경우
+            else:
+                curr = up
+        
         else:
-            restored = removed_queue.pop()
-            table.insert(restored[0], [restored[0], restored[1]])
+            node = mystack.pop()
+            node.removed = False
             
-            for i in range(restored[0]+1, len(table)):
-                table[i][0] += 1
+            up = node.prev
+            down = node.next
             
-            if restored[0] <= k:
-                k += 1
-    
-    removed = []
-    
-    for q in removed_queue:
-        removed.append(q[1])
+            if up:
+                up.next = node
+            if down:
+                down.prev = node
     
     for i in range(n):
-        if i in sorted(removed):
+        if nodeArr[i].removed:
             answer += 'X'
         else:
             answer += 'O'
