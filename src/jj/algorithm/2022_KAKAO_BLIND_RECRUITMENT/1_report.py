@@ -27,9 +27,11 @@ def solution(id_list, report, k):
     # 중복 제거
     report_no_repeat = list(set(report))
     
+    # reporter: 신고자, reported: 신고 받은 유저
     reporter = [x.split(' ')[0] for x in report_no_repeat]
     reported = [x.split(' ')[1] for x in report_no_repeat]
     
+    # 신고 받은 횟수에 대한 counter
     counter = Counter(reported)
     
     banned = [x[0] for x in counter.items() if x[1] >= k]
