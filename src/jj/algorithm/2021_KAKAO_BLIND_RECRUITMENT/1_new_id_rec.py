@@ -1,5 +1,3 @@
-# source: https://programmers.co.kr/learn/courses/30/lessons/72410
-
 '''
 아이디 규칙
 - 3~15자
@@ -49,11 +47,10 @@ def solution(new_id):
         answer += 'a'
         
     # 6 - 16자 이상이면, 첫 15개의 문자만. 제거 후 .이 끝에 위치한다면 . 제거
-    
     if len(answer) > 15:
         answer = answer[:15]
         
-    if answer and answer[-1] == '.':
+    if answer[-1] == '.':
         answer = answer[:-1]
         
     # 7 - 2자 이하라면, 마지막 문자를 길이가 3이 될 때까지 반복.
