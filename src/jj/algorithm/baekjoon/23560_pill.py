@@ -12,12 +12,19 @@ N일 동안 약 먹기
 # dynamic programming
 n = int(input())
 
-a = 2 
-b = 1
+# a = 2 
+# b = 1
+
+# for _ in range(n-1):
+#     tmp_a = a
+#     a = 2*a + 2*b
+#     b = b + tmp_a
+
+# print(a)
+
+a = 2
 
 for _ in range(n-1):
-    tmp_a = a
-    a = 2*a + 2*b
-    b = b + tmp_a
+    a *= 3
 
 print(a)
