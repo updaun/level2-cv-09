@@ -1,3 +1,5 @@
+# source: https://www.acmicpc.net/problem/10459
+
 '''
 define a "compressed word"
 - a single, lower-case letter is a compressed word
