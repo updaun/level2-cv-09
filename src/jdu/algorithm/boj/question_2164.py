@@ -14,5 +14,6 @@ print(l[0])
 #     l = [n]+[i for i in range(1, n+1) if i%2==0]
 # while len(l) > 2:
 #     l.pop(0)
-#     l = l[1:]+[l[0]]
+#     temp = l.pop(0)
+#     l = l + [temp]
 # print(l.pop(1))
