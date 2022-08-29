@@ -36,7 +36,7 @@ for i in range(0, 41):
     if i < 40:
         if i != 0: 
             memo[i+1][0] += memo[i][0]
-            memo[i+1][1] += memo[i][1]
+        memo[i+1][1] += memo[i][1]
 
     if i < 39:
         memo[i+2][0] += memo[i][0]
