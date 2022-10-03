@@ -34,7 +34,7 @@ def solution(alp, cop, problems):
         max_cop = max(max_cop, p[1])
     
     # dp[alg][cop]: 해당 알고력과 코딩력에 도달하기 위해 걸리는 최단 시간
-    dp = [[150] * (max_cop+1) for _ in range(max_alp+1)]
+    dp = [[300] * (max_cop+1) for _ in range(max_alp+1)]
     
     dp[alp][cop] = 0 # 현재 알고력과 코딩력에서 걸리는 시간 0으로 초기화.
     
